@@ -1,0 +1,56 @@
+<% include partials/header %>
+
+<div class="container">
+
+    <h1><%= title %></h1>
+
+	<table class="table table-striped" style="table-layout: fixed;width:800px;">
+		<tr class="center">
+			<th>Name</th>
+			<th>Description</th>
+			<th>Category</th>
+			<th>Serving Size</th>
+			<th>Calories</th>
+			<th>Meal</th>
+			<th></th>
+		</tr>
+		<% food.forEach(function (food) { %>
+			<tr>
+				<td> <%= food.name %> </td>
+				<td> <%= food.desc %> </td>
+				<td> <%= food.cat %> </td>
+				<td> <%= food.servsize %> <%= food.servunit %> </td>
+				<td> <%= food.cal %> </td>
+				<td> <%= food.meal %> </td>
+				<td> <a href="/food/update/<%= food._id %>">Edit</a><br><a href="/food/delete/<%= food._id %>">Del</a> </td>
+			</tr>
+		<% }) %>
+    <tr><td colspan=7>Add a new record!</td></tr>
+		<tr>
+			<form method="POST" action="/food/add">
+        <td><input type="text" name="name" id="name" placeholder="Meat Loaf" class="form-control col-xs-2"></td>
+        <td><input type="text" name="desc" id="desc" placeholder="Baked ground beef, goes great with ketchup"  class="form-control col-xs-6"></td>
+        <td>
+          <select name="cat" id="cat" class="form-control col-xs-2">
+            <option value="fat">Fats, oils, and sweets</option>
+            <option value="dairy">Milk, yogurt, and cheese</option>
+            <option value="meat">Meat, poultry, Fish, Beans, Eggs, and Nuts</option>
+            <option value="vegetable">Vegetables</option><option value="fruit">Fruits</option>
+            <option value="bread">Bread, cereal, rice, and pasta</option>
+          </select>
+        </td>
+        <td><input type="number" name="servsize" id="servsize" placeholder=1 class="form-control col-xs-1"><input type="text" name="servunit" id="servunit" placeholder="lb" class="form-control col-xs-1"></td>
+        <td><input type="number" name="cal" id="cal" placeholder=500 class="form-control col-xs-2"></td>
+        <td>
+          <select name="meal" id="meal" class="form-control col-xs-2">
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="other">Snack/Other</option>
+          </select>
+        </td>
+        <td><button type="submit" class="btn btn-primary">Add</button></td>
+		</tr>
+	</table>
+
+<% include partials/footer %>

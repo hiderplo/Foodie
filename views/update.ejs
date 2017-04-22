@@ -1,0 +1,76 @@
+<% include partials/header %>
+
+<div class="container">
+
+    <h1><%= title %></h1>
+
+    <% if (errors != undefined) { %>
+        <ul>
+        <% errors.forEach(function(error) { %>
+            <li><%= error.msg %></li>
+        <% }) %>
+        </ul>
+    <% } %>
+
+    <form method="POST" action="/food/update/<%= target %>" class="form-horizontal">
+      <% food.forEach(function (food) { %>
+        <% if (food._id == target) { %>
+          <input type="hidden" name="target" id="target" value="<%= food._id %>">
+          <div class="form-group">
+              <label for="name" class="control-label col-sm-2">Food Name: </label>
+		<div class="col-sm-4">
+              <input type="text" name="name" id="name" value="<%= food.name %>" class="form-control">
+		</div>
+          </div>
+
+          <div class="form-group">
+              <label for="desc" class="control-label col-sm-2">Description</label>
+		<div class="col-sm-4">
+		<textarea class="form-control" rows="5" name="desc" id="desc" class="form-control"><%= food.desc %></textarea>
+		</div>
+          </div>
+
+          <div class="form-group">
+              <label for="cat" class="control-label col-sm-2">Food Pyramid Category</label>
+		<div class="col-sm-2">
+              <input type="text" name="cat" id="cat" value="<%= food.cat %>" class="form-control">
+		</div>
+          </div>
+
+          <div class="form-group">
+              <label for="servsize" class="control-label col-sm-2">Serving Size</label>
+		<div class="col-sm-2">
+              <input type="text" name="servsize" id="servunit" value="<%= food.servsize %>" class="form-control">
+		</div>
+          </div>
+
+          <div class="form-group">
+              <label for="servunit" class="control-label col-sm-2">Serving Size Unit</label>
+		<div class="col-sm-2">
+              <input type="text" name="servunit" id="servunit" value="<%= food.servunit %>" class="form-control">
+		</div>
+          </div>
+
+	<div class="form-group">
+		<label for="cal" class="control-label col-sm-2">Calories</label>
+		<div class="col-sm-2">
+		<input type="text" name="cal" id="cal" value="<%= food.cal %>" class="form-control">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="meal" class="control-label col-sm-2">Associated Meal</label>
+		<div class="col-sm-2">
+		<input type="text" name="meal" id="meal" value="<%= food.meal %>" class="form-control">
+		</div>
+	</div>
+
+	<div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+	</div>
+        <% }}) %>
+    </form>
+
+</div>
+
+<% include partials/footer %>
